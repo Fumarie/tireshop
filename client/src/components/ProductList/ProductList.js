@@ -12,6 +12,8 @@ const ProductList = () => {
     const {role} = useSelector(state => state.user)
     console.log(products)
 
+    const perPageNew = role === 0 ? 36 : 35
+
     useEffect(() => {
         dispatch(getAllProducts())
     }, []);
@@ -24,7 +26,7 @@ const ProductList = () => {
 
     return (
         <div className={classes.CardWrap}>
-            {role === 1 && !loading && <Card className="Product_card__GCMRh card" style={{width: 350, height: 451}}>
+            {role === 1 && !loading && <Card className="Product_card__GCMRh card" style={{width: 350, height: 451, cursor: 'pointer'}}>
                 <Card.Body onClick={openCreateModal}>
                     <p style={{fontSize: 300, textAlign: 'center', lineHeight: 1, color: '#187A64'}}>+</p>
                 </Card.Body>
@@ -35,7 +37,7 @@ const ProductList = () => {
                 </Card.Footer>
             </Card>}
             {!loading ? products.map((elem, index) => {
-                    if (index < currentPage * perPage && index >= (currentPage - 1) * perPage)
+                    if (index < currentPage * perPageNew && index >= (currentPage - 1) * perPageNew)
                         return <Product id={elem.id} description={elem.description} price={elem.price}
                                         tire={{name: elem.tireMakerName, country: elem.tireCountry}}
                                         disc={{name: elem.discMakerName, country: elem.discCountry}} key={index}/>

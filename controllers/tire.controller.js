@@ -140,9 +140,6 @@ class TireController {
     createProduct(req, res) {
         console.log(req.body)
         const {price, description, tireId, discId} = req.body
-
-
-
         try {
             db.query(`INSERT INTO товар (стоимость, описание, id_шины, id_диски) VALUES (${price},${description},${tireId},${discId})`,
                 function (err, results, fields) {

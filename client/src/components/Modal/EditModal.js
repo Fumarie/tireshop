@@ -10,7 +10,6 @@ const EditModal = (props) => {
     useEffect(() => {
         dispatch(getTireMakers())
         dispatch(getDiscMakers())
-        dispatch(getProduct(id))
     }, []);
 
     const {tireMakers, discMakers, products} = useSelector(state => state.products)
