@@ -2,7 +2,7 @@ import React from 'react';
 import { Pagination } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../redux/actions/products";
-import classes from './Pagination.css'
+import './Pagination.css'
 
 const PaginationComp = () => {
     const dispatch = useDispatch()
