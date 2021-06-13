@@ -1,7 +1,7 @@
 const db = require('../db')
 
 class TireController {
-    getAllTires(req, res) {
+    getAllProducts(req, res) {
         try {
             db.query('SELECT ' +
                 'idТовар as id, ' +
@@ -57,6 +57,22 @@ class TireController {
                 JOIN производитель_дисков ON диски.idvendor = производитель_дисков.id 
                 JOIN размер_дисков ON диски.idsize = размер_дисков.idРазмер 
                 where id_диски AND id_шины AND idТовар= ${req.params.id}`,
+                function (err, results, fields) {
+                    if (err) {
+                        console.log(err)
+                        return res.json(err)
+                    }
+                    res.json(results)
+                })
+        } catch (e) {
+            console.log(e)
+            res.status(400).json({message: 'Error getting tire'})
+        }
+    }
+
+    getAllTires(req, res) {
+        try {
+            db.query('select id_размеры as tireSize, id_производителя as tireMakerId, id_резины as tireRubber, idшины as tireId from шины',
                 function (err, results, fields) {
                     if (err) {
                         console.log(err)

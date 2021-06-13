@@ -1,6 +1,6 @@
 import {
     GET_ALL_DISCS,
-    GET_ALL_PRODUCTS, GET_DISC_MAKERS, GET_DISCS_SIZES,
+    GET_ALL_PRODUCTS, GET_ALL_TIRES, GET_DISC_MAKERS, GET_DISCS_SIZES,
     GET_PRODUCT,
     GET_TIRE_MAKERS, SET_ADMIN_LOADING, SET_ADMIN_MODAL, SET_ADMIN_MODAL_TYPE,
     SET_CURRENTPAGE, SET_EDIT_ITEM,
@@ -140,6 +140,18 @@ export const createProduct = (data) => {
         }
     }
 }
+
+export const getAllTires = () => {
+    return async dispatch => {
+        try {
+            const tires = await axios.get(`http://localhost:9090/api/tire/tires`).then(response => response.data)
+            dispatch({type: GET_ALL_TIRES, payload: tires})
+        } catch (e) {
+            console.log(e.message)
+        }
+    }
+}
+
 
 export const getAllDiscs = () => {
     return async dispatch => {

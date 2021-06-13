@@ -1,6 +1,6 @@
 import {
     GET_ALL_DISCS,
-    GET_ALL_PRODUCTS,
+    GET_ALL_PRODUCTS, GET_ALL_TIRES,
     GET_DISC_MAKERS, GET_DISCS_SIZES,
     GET_PRODUCT,
     GET_TIRE_MAKERS, SET_ADMIN_LOADING, SET_ADMIN_MODAL, SET_ADMIN_MODAL_TYPE,
@@ -23,6 +23,7 @@ const initialState = {
     tireMakers: [],
     discMakers: [],
     discs: [],
+    tires: [],
     discSizes: [],
     adminLoading: false,
     adminModal: false,
@@ -44,6 +45,7 @@ const handlers = {
     [SET_ADMIN_MODAL_TYPE]: (state, action) => ({...state, adminModalType: action.payload}),
     [SET_ADMIN_MODAL]: (state, action) => ({...state, adminModal: action.payload}),
     [GET_ALL_DISCS]: (state, action) => ({...state, discs: action.payload, adminLoading: false}),
+    [GET_ALL_TIRES]: (state, action) => ({...state, tires: action.payload}),
     [GET_DISCS_SIZES]: (state, action) => ({...state, discSizes: action.payload}),
     [SET_EDIT_ITEM]: (state, action) => ({...state, editItem: action.payload}),
     DEFAULT: state => state

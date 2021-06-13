@@ -24,6 +24,9 @@ const AdminModal = (props) => {
         const vendorId = discMakers.find(maker => maker.discMakerName === vendor[0] && maker.discMakerCountry === vendor[1]).discMakerId
         const sizeId = discSizes.find(elem => elem.discDiametr === +size[0] && elem.discWidth === +size[1]).idDiscSize
 
+        console.log(vendorId)
+        console.log(sizeId)
+
         const finishData = {
             vendorId, sizeId
         }
@@ -33,7 +36,6 @@ const AdminModal = (props) => {
             dispatch(createDiscs(finishData))
         else
             dispatch(updateDiscs(editItem, finishData))
-
 
         props.onHide()
     }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { createProduct, getDiscMakers, getTireMakers } from "../../redux/actions/products";
+import { createProduct, getAllDiscs, getAllTires, getDiscMakers, getTireMakers } from "../../redux/actions/products";
 
 const CreateModal = (props) => {
     const dispatch = useDispatch()
@@ -9,9 +9,11 @@ const CreateModal = (props) => {
     useEffect(() => {
         dispatch(getTireMakers())
         dispatch(getDiscMakers())
+        dispatch(getAllDiscs())
+        dispatch(getAllTires())
     }, []);
 
-    const {tireMakers, discMakers, products} = useSelector(state => state.products)
+    const {tireMakers, discMakers, discs, tires} = useSelector(state => state.products)
 
     const SubmitHandler = event => {
         event.preventDefault()
@@ -19,11 +21,17 @@ const CreateModal = (props) => {
         const tireMakerName = data.tire
         const discMakerName = data.disc
 
-        const tireMakerId = tireMakers.find(maker => maker.tireMakerName === tireMakerName).tireMakerId
-        const discMakerId = discMakers.find(maker => maker.discMakerName === discMakerName).discMakerId
+        const tireMaker = tireMakers.find(maker => maker.tireMakerName === tireMakerName).tireMakerId
+        const discMaker = discMakers.find(maker => maker.discMakerName === discMakerName).discMakerId
 
-        const tireId = products.find(product => product.tireMakerId === tireMakerId).tireId
-        const discId = products.find(product => product.discMakerId === discMakerId).discId
+        console.log(tireMaker)
+        console.log(discMaker)
+
+        console.log(tires)
+        console.log(discs)
+
+        const tireId = tires.find(product => product.tireMakerId === tireMaker).tireId
+        const discId = discs.find(product => product.vendorId === discMaker).idDisc
 
         const finishData = {
             price: data.price,

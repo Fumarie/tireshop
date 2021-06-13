@@ -43,9 +43,10 @@ class DiscController {
     }
 
     createDisc(req, res) {
+        console.log(req.body)
         const {vendorId, sizeId} = req.body
         try {
-            db.query(`INSERT INTO диски (idsize, idvendor) VALUES (${vendorId},${sizeId})`, function (err, results, fields) {
+            db.query(`INSERT INTO диски (idsize, idvendor) VALUES (${sizeId},${vendorId})`, function (err, results, fields) {
                 if (err) {
                     console.log(err)
                     return res.json(err)
@@ -77,6 +78,7 @@ class DiscController {
 
     updateDisc(req, res) {
         try{
+            console.log(req.body)
             const {id, vendorId, sizeId} = req.body
             console.log(req.body)
             db.query(`UPDATE диски set idsize = ${sizeId}, idvendor = ${vendorId} where idДиски = ${id}`,
