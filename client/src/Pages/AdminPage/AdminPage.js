@@ -7,11 +7,9 @@ import {
     setAdminModal,
     setAdminModalType,
     setEditItem,
-    setModal
 } from "../../redux/actions/products";
 import Loader from "../../components/Loader/Loader";
 import AdminModal from "../../components/AdminModal/AdminModal";
-import { setRole } from "../../redux/actions/user";
 
 const AdminPage = () => {
     const dispatch = useDispatch()
@@ -19,7 +17,8 @@ const AdminPage = () => {
     useEffect(() => {
         dispatch(getAllDiscs())
         dispatch(getDiscMakers())
-        // dispatch(getDiscsCountByCountry())
+        dispatch(getDiscsCountByCountry(''))
+        dispatch(getDiscsCountByBrand(''))
     }, []);
 
     const {discs, adminLoading, adminModal, discMakers, discsCountByCountry, discsCountByBrand} = useSelector(state => state.products)
@@ -58,6 +57,7 @@ const AdminPage = () => {
             {!adminLoading ?
                 <>
                     <h1 style={{fontSize: 25}}>Страница редактирования ассортимента дисков</h1>
+                    <h3 style={{fontSize: 15, textAlign: 'center'}}>Поиск дисков по стране и наименованию производителя</h3>
                     <div style={{display: 'flex', justifyContent: 'space-around'}}>
                         <div style={{marginBottom: 20, width: 300}}>
                             <div style={{fontSize: 18, marginBottom: 5}}>Выберите страну производителя</div>
