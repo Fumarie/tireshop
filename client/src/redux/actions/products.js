@@ -1,12 +1,22 @@
 import {
     GET_ALL_DISCS,
-    GET_ALL_PRODUCTS, GET_ALL_TIRES, GET_DISC_MAKERS, GET_DISCS_SIZES,
+    GET_ALL_PRODUCTS,
+    GET_ALL_TIRES,
+    GET_DISC_MAKERS, GET_DISCS_COUNT_BY_BRAND,
+    GET_DISCS_COUNT_BY_BREND,
+    GET_DISCS_COUNT_BY_COUNTRY,
+    GET_DISCS_SIZES,
     GET_PRODUCT,
-    GET_TIRE_MAKERS, SET_ADMIN_LOADING, SET_ADMIN_MODAL, SET_ADMIN_MODAL_TYPE,
-    SET_CURRENTPAGE, SET_EDIT_ITEM,
+    GET_TIRE_MAKERS,
+    SET_ADMIN_LOADING,
+    SET_ADMIN_MODAL,
+    SET_ADMIN_MODAL_TYPE,
+    SET_CURRENTPAGE,
+    SET_EDIT_ITEM,
     SET_LOADING,
     SET_MODAL,
-    SET_MODAL_LOADING, SET_MODAL_TYPE
+    SET_MODAL_LOADING,
+    SET_MODAL_TYPE
 } from "../types";
 import axios from "axios";
 
@@ -197,6 +207,39 @@ export const updateDiscs = (id, data) => {
                 ...data, id
             })
             dispatch(getAllDiscs())
+        } catch (e) {
+            console.log(e.message)
+        }
+    }
+}
+
+export const getDiscsCountByCountry = (country) => {
+    return async dispatch => {
+        try {
+            if(!country)
+                dispatch({type: GET_DISCS_COUNT_BY_COUNTRY, payload: 0})
+            else {
+                const count = await axios.get(`http://localhost:9090/api/disc/country?country=${country}`).then(response => response.data)
+                dispatch({type: GET_DISCS_COUNT_BY_COUNTRY, payload: count})
+            }
+        } catch (e) {
+            console.log(e.message)
+        }
+    }
+}
+
+export const getDiscsCountByBrand = (brand) => {
+    return async dispatch => {
+        console.log(brand)
+        try {
+            if(!brand)
+                dispatch({type: GET_DISCS_COUNT_BY_BRAND, payload: 0})
+            else {
+                console.log(brand)
+                const count = await axios.get(`http://localhost:9090/api/disc/brand?brand=${brand}`).then(response => response.data)
+                console.log(count)
+                dispatch({type: GET_DISCS_COUNT_BY_BRAND, payload: count})
+            }
         } catch (e) {
             console.log(e.message)
         }

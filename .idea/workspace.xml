@@ -23,7 +23,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/disc.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/disc.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/tire.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tire.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/tire.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/tire.routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/disc.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/disc.routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +78,9 @@
       <workItem from="1623413569263" duration="24367000" />
       <workItem from="1623490480411" duration="40978000" />
       <workItem from="1623578583704" duration="946000" />
-      <workItem from="1623581278242" duration="4359000" />
+      <workItem from="1623581278242" duration="6216000" />
+      <workItem from="1623589774429" duration="6076000" />
+      <workItem from="1623595946409" duration="401000" />
     </task>
     <servers />
   </component>

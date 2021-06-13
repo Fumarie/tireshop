@@ -43,7 +43,6 @@ class DiscController {
     }
 
     createDisc(req, res) {
-        console.log(req.body)
         const {vendorId, sizeId} = req.body
         try {
             db.query(`INSERT INTO диски (idsize, idvendor) VALUES (${sizeId},${vendorId})`, function (err, results, fields) {
@@ -78,9 +77,7 @@ class DiscController {
 
     updateDisc(req, res) {
         try{
-            console.log(req.body)
             const {id, vendorId, sizeId} = req.body
-            console.log(req.body)
             db.query(`UPDATE диски set idsize = ${sizeId}, idvendor = ${vendorId} where idДиски = ${id}`,
                 function (err, results, fields) {
                     if (err) {
@@ -95,7 +92,41 @@ class DiscController {
         }
     }
 
+    getDiscsCountByCountry(req, res) {
+        try {
+            const country = req.query.country
+            db.query(`SELECT COUNT(*) as count from диски JOIN производитель_дисков ON производитель_дисков.id = диски.idvendor where Страна LIKE \'${country}\'`,
+                function (err, results, fields) {
+                    if (err) {
+                        console.log(err)
+                        return res.json(err)
+                    }
+                    res.json(results[0].count)
+                })
+        }
+         catch (e) {
+            console.log(e)
+            res.status(400).json({message: 'Error editing disc'})
+        }
+    }
 
+    getDiscsCountByBrand(req, res) {
+        try {
+            const brand = req.query.brand
+            db.query(`SELECT COUNT(*) as count from диски JOIN производитель_дисков ON производитель_дисков.id = диски.idvendor where Наименование LIKE \'${brand}\'`,
+                function (err, results, fields) {
+                    if (err) {
+                        console.log(err)
+                        return res.json(err)
+                    }
+                    res.json(results[0].count)
+                })
+        }
+        catch (e) {
+            console.log(e)
+            res.status(400).json({message: 'Error editing disc'})
+        }
+    }
 }
 
 module.exports = new DiscController()

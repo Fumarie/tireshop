@@ -1,7 +1,7 @@
 import {
     GET_ALL_DISCS,
     GET_ALL_PRODUCTS, GET_ALL_TIRES,
-    GET_DISC_MAKERS, GET_DISCS_SIZES,
+    GET_DISC_MAKERS, GET_DISCS_COUNT_BY_BRAND, GET_DISCS_COUNT_BY_BREND, GET_DISCS_COUNT_BY_COUNTRY, GET_DISCS_SIZES,
     GET_PRODUCT,
     GET_TIRE_MAKERS, SET_ADMIN_LOADING, SET_ADMIN_MODAL, SET_ADMIN_MODAL_TYPE,
     SET_CURRENTPAGE, SET_EDIT_ITEM,
@@ -28,7 +28,9 @@ const initialState = {
     adminLoading: false,
     adminModal: false,
     adminModalType: 0,
-    editItem: null
+    editItem: null,
+    discsCountByCountry: 0,
+    discsCountByBrand: 0
 }
 
 const handlers = {
@@ -48,6 +50,8 @@ const handlers = {
     [GET_ALL_TIRES]: (state, action) => ({...state, tires: action.payload}),
     [GET_DISCS_SIZES]: (state, action) => ({...state, discSizes: action.payload}),
     [SET_EDIT_ITEM]: (state, action) => ({...state, editItem: action.payload}),
+    [GET_DISCS_COUNT_BY_COUNTRY]: (state, action) => ({...state, discsCountByCountry: action.payload}),
+    [GET_DISCS_COUNT_BY_BRAND]: (state, action) => ({...state, discsCountByBrand: action.payload}),
     DEFAULT: state => state
 }
 
